@@ -31,10 +31,28 @@
       <img class="img" src="IMG.jpg" alt="JUNO_OKYO" />
       <canvas id="pinkboard"></canvas>
     </div>
-    <audio autoplay>
-      <!-- <source src="adio.ogg" type="audio/ogg"> -->
+    <audio id="bg-music" preload="auto" autoplay loop playsinline>
       <source src="adio.mp3" type="audio/mpeg">
     </audio>
+    
+    <script>
+      const audio = document.getElementById("bg-music");
+    
+      // Đảm bảo trình duyệt đã sẵn sàng
+      document.addEventListener("DOMContentLoaded", () => {
+        audio.play().catch(() => {
+          // Nếu bị chặn → unmute sau 1 chút rồi thử lại
+          setTimeout(() => {
+            audio.play().catch(() => {});
+          }, 500);
+        });
+      });
+    
+      // Fix cho iPhone – yêu cầu chạm lần đầu
+      document.addEventListener("touchstart", () => {
+        audio.play();
+      }, { once: true });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/particle.js"></script>

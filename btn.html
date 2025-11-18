@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trang khởi động</title>
+  <style>
+    /* style đơn giản, dễ tuỳ chỉnh */
+    body {
+      font-family: "Montserrat", Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+    .card {
+      text-align: center;
+      padding: 28px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+      width: min(440px, 90%);
+    }
+    h1 { margin: 0 0 12px; font-size: 24px; }
+    p { margin: 0 0 20px; color: #cbd5e1; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      background: linear-gradient(90deg,#ff8a00,#f97316);
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    .btn:active { transform: translateY(1px); }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Trang khởi động">
+    <h1>Anh Khoa đẹp trai</h1>
+    <p>Nhấn nút bên dưới để mở màn hình nội dung</p>
+
+    <!-- 1) chuyển trong cùng tab -->
+    <button class="btn" id="open-same">Mở</button>
+
+    <!-- 2) (tuỳ chọn) mở tab mới -->
+    <!-- <button class="btn" id="open-new" style="margin-left:12px; background: linear-gradient(90deg,#06b6d4,#3b82f6);">
+      Mở tab mới
+    </button> -->
+  </div>
+
+  <script>
+    // đổi 'juno.html' thành tên file thực tế của bạn nếu khác
+    const target = 'index.html';
+
+    document.getElementById('open-same').addEventListener('click', () => {
+      // chuyển trang trong cùng tab
+      window.location.href = target;
+    });
+
+    document.getElementById('open-new').addEventListener('click', () => {
+      // mở trang trong tab mới
+      window.open(target, '_blank');
+    });
+
+    // accessibility: enter/space same as click
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.setAttribute('tabindex', '0');
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -187,3 +187,41 @@ img {
   mask-border: var(--_m);
   clip-path: polygon(-41% 0, 50% 91%, 141% 0);
 }
+
+
+/* Đặt audio và nút lên góc trên bên phải */
+#audio, #toggle-music {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ff6eb4; /* màu hồng dễ thương */
+  padding: 10px 15px;
+  border-radius: 25px; /* bo tròn */
+  box-shadow: 0 4px 12px rgba(255, 110, 180, 0.4);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Hover effect cho nút */
+#audio:hover, #toggle-music:hover {
+  transform: scale(1.1);
+  background-color: #ff85c1; /* sáng hơn khi hover */
+}
+
+/* Nếu #toggle-music là button */
+#toggle-music {
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Audio element kiểu nhỏ gọn */
+#audio {
+  width: auto;
+  height: 40px;
+}
